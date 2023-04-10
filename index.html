@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>สัตว์วิเศษ</title>
+    <style>
+      /* Style for navigation bar */
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #333;
+        color: white;
+        padding: 10px;
+      }
+
+      .navbar h1 {
+        margin: 0;
+      }
+
+      .navbar button {
+        background-color: transparent;
+        border: none;
+        color: white;
+        font-size: 1.2rem;
+        cursor: pointer;
+      }
+
+      /* Style for navigation drawer */
+      .drawer {
+        display: none;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 200px;
+        height: 100%;
+        background-color: #f5f5f5;
+        z-index: 1;
+        padding: 10px;
+        overflow-y: auto;
+      }
+
+      .drawer a {
+        display: block;
+        padding: 5px 0;
+        color: #333;
+        text-decoration: none;
+      }
+
+      /* Style for section toggling */
+      .section {
+        display: none;
+        margin: 20px 0;
+      }
+
+      .section h2 {
+        margin-top: 0;
+      }
+
+      .section.active {
+        display: block;
+      }
+
+      /* Style for animation */
+      .creature {
+        position: relative;
+        width: 150px;
+        height: 150px;
+        margin: 50px auto;
+        animation-name: spin;
+        animation-duration: 3s;
+        animation-iteration-count: infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Style for footer */
+      footer {
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation bar with toggle button -->
+    <nav class="navbar">
+      <h1>สัตว์วิเศษ</h1>
+      <button id="toggle-btn">&#9776;</button>
+    </nav>
+
+    <!-- Navigation drawer with links -->
+    <div class="drawer">
+      <a href="#unicorns">ยูนิคอร์น</a>
+      <a href="#dragons">มังกร</a>
+      <a href="#mermaids">นางเงือก</a>
+    </div>
+
+    <!-- Main content with sections -->
+    <div class="main">
+      <section id="unicorns" class="section active">
+        <h2>ยูนิคอร์น</h2>
+        <p>ยูนิคอร์นเป็นสัตว์วิเศษที่มีเขาเกลียวเดียวบนหน้าผาก พวกเขามักจะเป็นภาพม้าขาวที่มีแผงคอและหางสีรุ้ง</p>
+        <div class="creature">
+          <img src="https://img.freepik.com/free-vector/cute-unicorn-bite-love-cartoon-vector-icon-illustration-animal-nature-icon-concept-isolated-premium-vector-flat-cartoon-style_138676-4091.jpg?w=826&t=st=1681132407~exp=1681133007~hmac=8ae8aac6c8c41933f9b9162db9de124ec9df1c9af0e8efabbbe1ba0b76b3f365" alt="Unicorn" />
+        </div>
+      </section>
+
+      <section id="dragons" class="section">
+        <h2>มังกร</h2>
+        <p>มังกรเป็นสัตว์ในตำนานที่มีลักษณะเหมือนสัตว์เลื้อยคลาน พวกเขามักถูกมองว่าเป็นสัตว์ดุร้ายที่มีปีกและสามารถพ่นไฟได้</p>
+        <div class="creature">
+            <img src="https://img.freepik.com/free-vector/flat-design-dragon-silhouette_23-2149486319.jpg?w=826&t=st=1681132527~exp=1681133127~hmac=5e5dd3252defcdce5804caa48281d59dfc1d8d89c8ade7af5dc5aa71505d3627" alt="Dragon" />
+          </div>
+        </section>
+  
+        <section id="mermaids" class="section">
+          <h2>นางเงือก</h2>
+          <p>นางเงือกเป็นสัตว์ในตำนานที่มีร่างกายท่อนบนเป็นมนุษย์และท่อนล่างเป็นปลา พวกเขามักถูกพรรณนาว่าเป็นสิ่งมีชีวิตที่สวยงามและมีเสน่ห์พร้อมกับเสียงร้องที่ชวนให้หลงใหล</p>
+          <div class="creature">
+            <img src="https://img.freepik.com/free-vector/mermaid-fish-underwater_1308-34993.jpg?w=740&t=st=1681132602~exp=1681133202~hmac=5e296a2752777da8fbd4965e1865570ccd1c7ddcffcd8c02588f45bdb78bbf52" alt="Mermaid" />
+          </div>
+        </section>
+      </div>
+      <script>
+        // Toggle navigation drawer on button click
+        const toggleBtn = document.getElementById("toggle-btn");
+        const drawer = document.querySelector(".drawer");
+  
+        toggleBtn.addEventListener("click", () => {
+          drawer.style.display = drawer.style.display === "block" ? "none" : "block";
+        });
+  
+        // Toggle section on link click
+        const links = document.querySelectorAll(".drawer a");
+        const sections = document.querySelectorAll(".section");
+  
+        links.forEach((link) => {
+          link.addEventListener("click", (event) => {
+            event.preventDefault();
+            const sectionId = link.getAttribute("href").substring(1);
+            const section = document.getElementById(sectionId);
+            sections.forEach((s) => s.classList.remove("active"));
+            section.classList.add("active");
+            drawer.style.display = "none";
+          });
+        });
+      </script>
+    </body>
+  </html>
